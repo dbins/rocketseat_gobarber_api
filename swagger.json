@@ -1,0 +1,1636 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "API GO BARBER",
+        "version": "",
+        "description": "API do aplicativo Go Barber!"
+    },
+    "host": "192.168.0.100:3000",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/users": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {},
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                },
+                                "user": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "description": "ID do usuário"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Nome do usuário"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "E-mail do usuário, deve ser único"
+                                        },
+                                        "provider": {
+                                            "type": "boolean",
+                                            "description": "Tipo de usuário (CLIENTE ou PRESTADOR DE SERVIÇO)"
+                                        },
+                                        "avatar": {
+                                            "type": [
+                                                "object",
+                                                "null"
+                                            ],
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "description": "Nome da imagem"
+                                                },
+                                                "path": {
+                                                    "type": "string",
+                                                    "description": "Nome do arquivo"
+                                                },
+                                                "url": {
+                                                    "type": "string",
+                                                    "description": "Caminho da imagem"
+                                                }
+                                            },
+                                            "description": "Imagem do usuário"
+                                        }
+                                    },
+                                    "description": "Objeto com os dados do usuário"
+                                },
+                                "token": {
+                                    "type": "string",
+                                    "description": "Token criptografado"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Criar Usuário",
+                "description": "",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "name": "Bins2",
+                                "email": "bins22@ig.com.br",
+                                "password": "1234576"
+                            }
+                        }
+                    }
+                ]
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {},
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                },
+                                "user": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "description": "ID do usuário"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Nome do usuário"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "E-mail do usuário, deve ser único"
+                                        },
+                                        "provider": {
+                                            "type": "boolean",
+                                            "description": "Tipo de usuário (CLIENTE ou PRESTADOR DE SERVIÇO)"
+                                        },
+                                        "avatar": {
+                                            "type": [
+                                                "object",
+                                                "null"
+                                            ],
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "description": "Nome da imagem"
+                                                },
+                                                "path": {
+                                                    "type": "string",
+                                                    "description": "Nome do arquivo"
+                                                },
+                                                "url": {
+                                                    "type": "string",
+                                                    "description": "Caminho da imagem"
+                                                }
+                                            },
+                                            "description": "Imagem do usuário"
+                                        }
+                                    },
+                                    "description": "Objeto com os dados do usuário"
+                                },
+                                "token": {
+                                    "type": "string",
+                                    "description": "Token criptografado"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Atualizar Usuário",
+                "description": "",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "oldPassword": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                },
+                                "confirmPassword": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "name": "Bins",
+                                "email": "bins@ig.com.br",
+                                "oldPassword": "1234576",
+                                "password": "1234576",
+                                "confirmPassword": "1234576"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "/sessions": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "user": {
+                                    "id": 67,
+                                    "name": "Bins",
+                                    "email": "bins22@ig.com.br",
+                                    "provider": false,
+                                    "type": "USUARIO",
+                                    "avatar": null
+                                },
+                                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEyLCJpYXQiOjE1NjM3MTczNzN9.otd3_U-PxnME3M7rh0FnKXYBi0dhDOaShaPDN9Qk49w"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "description": "ID do usuário"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Nome do usuário"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "E-mail do usuário, deve ser único"
+                                        },
+                                        "provider": {
+                                            "type": "boolean",
+                                            "description": "Tipo de usuário (CLIENTE ou PRESTADOR DE SERVIÇO)"
+                                        },
+                                        "avatar": {
+                                            "type": [
+                                                "object",
+                                                "null"
+                                            ],
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "description": "Nome da imagem"
+                                                },
+                                                "path": {
+                                                    "type": "string",
+                                                    "description": "Nome do arquivo"
+                                                },
+                                                "url": {
+                                                    "type": "string",
+                                                    "description": "Caminho da imagem"
+                                                }
+                                            },
+                                            "description": "Imagem do usuário"
+                                        }
+                                    },
+                                    "description": "Objeto com os dados do usuário"
+                                },
+                                "token": {
+                                    "type": "string",
+                                    "description": "Token criptografado"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "message": "A senha ou o email informados estão incorretos"
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "message": "Erro ao tentar logar o usuário. Verifique o login e a senha informados"
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "message": "O e-mail informado não foi localizado"
+                            }
+                        }
+                    }
+                },
+                "summary": "Login do usuário",
+                "description": "",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "email": "bins@ig.com.br",
+                                "password": "123456"
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/forgot_password": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {},
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "Message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Esqueceu senha",
+                "description": "",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "email": "bins@ig.com.br"
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "/validate_token": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "user": {
+                                    "id": 67,
+                                    "name": "Bins",
+                                    "email": "bins22@ig.com.br",
+                                    "provider": false,
+                                    "type": "USUARIO",
+                                    "avatar": null
+                                },
+                                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEyLCJpYXQiOjE1NjM3MTczNzN9.otd3_U-PxnME3M7rh0FnKXYBi0dhDOaShaPDN9Qk49w"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "description": "ID do usuário"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Nome do usuário"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "E-mail do usuário, deve ser único"
+                                        },
+                                        "provider": {
+                                            "type": "boolean",
+                                            "description": "Tipo de usuário (CLIENTE ou PRESTADOR DE SERVIÇO)"
+                                        },
+                                        "avatar": {
+                                            "type": [
+                                                "object",
+                                                "null"
+                                            ],
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "description": "Nome da imagem"
+                                                },
+                                                "path": {
+                                                    "type": "string",
+                                                    "description": "Nome do arquivo"
+                                                },
+                                                "url": {
+                                                    "type": "string",
+                                                    "description": "Caminho da imagem"
+                                                }
+                                            },
+                                            "description": "Imagem do usuário"
+                                        }
+                                    },
+                                    "description": "Objeto com os dados do usuário"
+                                },
+                                "token": {
+                                    "type": "string",
+                                    "description": "Token criptografado"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Validar Token",
+                "description": "",
+                "tags": [
+                    "Usuário"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "token": {
+                                    "type": "string"
+                                }
+                            },
+                            "example": {
+                                "token": "1235678910"
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/files/{id}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "image/jpeg": ""
+                        }
+                    }
+                },
+                "summary": "Imagem do prestador",
+                "description": "",
+                "tags": [
+                    "Files"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do arquivo",
+                        "required": true,
+                        "x-example": "1",
+                        "type": "number"
+                    }
+                ],
+                "produces": [
+                    "image/jpeg"
+                ]
+            },
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "file": {
+                                    "file": "1558396610564.jpeg",
+                                    "name": "0_11b748_d4d498a0_XXL.jpg",
+                                    "type": "image",
+                                    "subtype": "jpeg",
+                                    "created_at": "2019-05-20 20:56:50",
+                                    "updated_at": "2019-05-20 20:56:50",
+                                    "id": 5
+                                }
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "file": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "description": "ID do arquivo"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Nome do arquivo"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "description": "Tipo do arquivo"
+                                        },
+                                        "subtype": {
+                                            "type": "string",
+                                            "description": "Extensão do arquivo"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "description": "Data de criação"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "description": "Data de atualização"
+                                        },
+                                        "url": {
+                                            "type": "string",
+                                            "description": "Link para acessar a imagem"
+                                        }
+                                    },
+                                    "description": "Objeto com os dados da imagem"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Atualizar imagem",
+                "description": "O envio do arquivo deve ser feito atráves de form-data (multipart/form-data). O nome da variável deve ser file",
+                "tags": [
+                    "Files"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do arquivo",
+                        "required": true,
+                        "x-example": "1",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "message": "Imagem excluída com sucesso"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "Message": {
+                                    "type": "string",
+                                    "description": "Retorno da operação"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Apagar Imagem",
+                "description": "",
+                "tags": [
+                    "Files"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do arquivo",
+                        "required": true,
+                        "x-example": "1",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/files/": {
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "file": {
+                                    "file": "1557088194989.jpeg",
+                                    "name": "0_11b748_d4d498a0_XXL.jpg",
+                                    "type": "image",
+                                    "subtype": "jpeg",
+                                    "created_at": "2019-05-05 17:29:54",
+                                    "updated_at": "2019-05-05 17:29:54",
+                                    "id": 1
+                                }
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "file": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "description": "ID do arquivo"
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "Nome do arquivo"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "description": "Tipo do arquivo"
+                                        },
+                                        "subtype": {
+                                            "type": "string",
+                                            "description": "Extensão do arquivo"
+                                        },
+                                        "created_at": {
+                                            "type": "string",
+                                            "description": "Data de criação"
+                                        },
+                                        "updated_at": {
+                                            "type": "string",
+                                            "description": "Data de atualização"
+                                        },
+                                        "url": {
+                                            "type": "string",
+                                            "description": "Link para acessar a imagem"
+                                        }
+                                    },
+                                    "description": "Objeto com os dados da imagem"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Enviar imagem do prestador",
+                "description": "O envio do arquivo deve ser feito atráves de form-data (multipart/form-data). O nome da variável deve ser file",
+                "tags": [
+                    "Files"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/providers": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {},
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "summary": "Listagem de prestadores",
+                "description": "",
+                "tags": [
+                    "Providers"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        "/providers/{id}/available": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": [
+                                {
+                                    "time": "123456",
+                                    "value": "123456",
+                                    "available": true
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "summary": "Horários de atendimento",
+                "description": "",
+                "tags": [
+                    "Providers"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do prestador de serviço",
+                        "required": true,
+                        "x-example": "1",
+                        "type": "number"
+                    },
+                    {
+                        "name": "date",
+                        "in": "query",
+                        "description": "Data selecionada",
+                        "required": true,
+                        "x-example": "123456",
+                        "type": "string"
+                    },
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/providers/{id}/days": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": [
+                                {
+                                    "day": "2019-08-10",
+                                    "day_week": "5",
+                                    "enabled": true
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "summary": "Dias de atendimento",
+                "description": "",
+                "tags": [
+                    "Providers"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do prestador de serviço",
+                        "required": true,
+                        "x-example": "1",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/appointments": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": [
+                                {
+                                    "id": 1,
+                                    "date": "2019-08-10 20:56:50",
+                                    "user_id": 1,
+                                    "provider_id": 2,
+                                    "canceled_at": "",
+                                    "created_at": "2019-08-10 20:56:50",
+                                    "updated_at": "2019-08-10 20:56:50",
+                                    "provider": {
+                                        "name": "teste",
+                                        "email": "teste@teste.com.br"
+                                    },
+                                    "user": {
+                                        "name": "teste"
+                                    }
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "summary": "Listagem de agendamentos",
+                "description": "",
+                "tags": [
+                    "Appointments"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "id": 1,
+                                "date": "2019-08-10 20:56:50",
+                                "user_id": 1,
+                                "provider_id": 2,
+                                "canceled_at": "",
+                                "created_at": "2019-08-10 20:56:50",
+                                "updated_at": "2019-08-10 20:56:50",
+                                "provider": {
+                                    "name": "teste",
+                                    "email": "teste@teste.com.br"
+                                },
+                                "user": {
+                                    "name": "teste"
+                                }
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "description": "ID do agendamento"
+                                },
+                                "date": {
+                                    "type": "string",
+                                    "description": "Data do agendamento"
+                                },
+                                "user_id": {
+                                    "type": "number",
+                                    "description": "ID do cliente"
+                                },
+                                "provider_id": {
+                                    "type": "number",
+                                    "description": "ID do prestador de serviço"
+                                },
+                                "canceled_at": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "description": "Data de cancelamento"
+                                },
+                                "created_at": {
+                                    "type": "string",
+                                    "description": "Data de criação"
+                                },
+                                "updated_at": {
+                                    "type": "string",
+                                    "description": "Data de criação"
+                                },
+                                "provider": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "nome do prestador de serviço"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "E-mail do prestador de serviço"
+                                        }
+                                    },
+                                    "description": "Dados do prestador de serviço"
+                                },
+                                "user": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "nome do cliente"
+                                        }
+                                    },
+                                    "description": "Dados do usuário"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Novo Agendamento",
+                "description": "",
+                "tags": [
+                    "Appointments"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "date": {
+                                    "type": "string"
+                                },
+                                "provider_id": {
+                                    "type": "number"
+                                }
+                            },
+                            "example": {
+                                "date": "2019-08-23 18:00:00",
+                                "provider_id": 2
+                            }
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/appointments/{id}": {
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "id": 1,
+                                "date": "2019-08-10 20:56:50",
+                                "user_id": 1,
+                                "provider_id": 2,
+                                "canceled_at": "",
+                                "created_at": "2019-08-10 20:56:50",
+                                "updated_at": "2019-08-10 20:56:50",
+                                "provider": {
+                                    "name": "teste",
+                                    "email": "teste@teste.com.br"
+                                },
+                                "user": {
+                                    "name": "teste"
+                                }
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number",
+                                    "description": "ID do agendamento"
+                                },
+                                "date": {
+                                    "type": "string",
+                                    "description": "Data do agendamento"
+                                },
+                                "user_id": {
+                                    "type": "number",
+                                    "description": "ID do cliente"
+                                },
+                                "provider_id": {
+                                    "type": "number",
+                                    "description": "ID do prestador de serviço"
+                                },
+                                "canceled_at": {
+                                    "type": [
+                                        "string",
+                                        "null"
+                                    ],
+                                    "description": "Data de cancelamento"
+                                },
+                                "created_at": {
+                                    "type": "string",
+                                    "description": "Data de criação"
+                                },
+                                "updated_at": {
+                                    "type": "string",
+                                    "description": "Data de criação"
+                                },
+                                "provider": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "nome do prestador de serviço"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "E-mail do prestador de serviço"
+                                        }
+                                    },
+                                    "description": "Dados do prestador de serviço"
+                                },
+                                "user": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "description": "nome do cliente"
+                                        }
+                                    },
+                                    "description": "Dados do usuário"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Apagar Agendamento",
+                "description": "",
+                "tags": [
+                    "Appointments"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do agendamento",
+                        "required": true,
+                        "x-example": "1",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/notifications": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": [
+                                {
+                                    "id": 1,
+                                    "content": "teste",
+                                    "user": 1,
+                                    "read": true,
+                                    "created_at": "2019-08-10 20:56:50",
+                                    "updated_at": "2019-08-10 20:56:50"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "summary": "Listagem",
+                "description": "",
+                "tags": [
+                    "Notification"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/notifications/{id}": {
+            "put": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": {
+                                "id": 1,
+                                "content": "teste",
+                                "user": 1,
+                                "read": true,
+                                "created_at": "2019-08-10 20:56:50",
+                                "updated_at": "2019-08-10 20:56:50"
+                            }
+                        },
+                        "schema": {
+                            "type": "object",
+                            "properties": {}
+                        }
+                    }
+                },
+                "summary": "Marcar como visto",
+                "description": "",
+                "tags": [
+                    "Notification"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID do da notificação",
+                        "required": true,
+                        "x-example": "1",
+                        "type": "number"
+                    },
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        },
+        "/schedule": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {},
+                        "examples": {
+                            "application/json; charset=utf-8": [
+                                {
+                                    "id": 1,
+                                    "date": "2019-08-10 20:56:50",
+                                    "user_id": 1,
+                                    "provider_id": 2,
+                                    "canceled_at": "",
+                                    "created_at": "2019-08-10 20:56:50",
+                                    "updated_at": "2019-08-10 20:56:50",
+                                    "user": {
+                                        "name": "teste"
+                                    }
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {}
+                        }
+                    }
+                },
+                "summary": "Agenda",
+                "description": "",
+                "tags": [
+                    "Schedule"
+                ],
+                "parameters": [
+                    {
+                        "name": "Authentication",
+                        "in": "header",
+                        "description": "e.g. Bearer JWT",
+                        "required": false,
+                        "x-example": "Bearer JWT",
+                        "type": "string"
+                    }
+                ],
+                "produces": [
+                    "application/json; charset=utf-8"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "Sobre": {},
+        "Usuário": {},
+        "Login": {},
+        "Esqueceu senha": {},
+        "Validar Token": {},
+        "Imagens dos prestadores de serviços": {},
+        "Enviar imagem do prestador": {},
+        "Listagem de prestadores": {},
+        "Horários de atendimento": {},
+        "Dias de atendimento": {},
+        "Agendamentos": {},
+        "Listagem": {},
+        "Marcar como visto": {},
+        "Agenda": {},
+        "UsuarioResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "ID do usuário"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Nome do usuário"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "E-mail do usuário, deve ser único"
+                },
+                "provider": {
+                    "type": "boolean",
+                    "description": "Tipo de usuário (CLIENTE ou PRESTADOR DE SERVIÇO)"
+                },
+                "avatar": {
+                    "$ref": "#/definitions/AvatarResponse",
+                    "description": "Imagem do usuário"
+                }
+            }
+        },
+        "LoginResponse": {
+            "type": "object",
+            "properties": {
+                "user": {
+                    "$ref": "#/definitions/UsuarioResponse",
+                    "description": "Objeto com os dados do usuário"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "Token criptografado"
+                }
+            }
+        },
+        "CreateUserResponse": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Retorno da operação"
+                },
+                "user": {
+                    "$ref": "#/definitions/UsuarioResponse",
+                    "description": "Objeto com os dados do usuário"
+                },
+                "token": {
+                    "type": "string",
+                    "description": "Token criptografado"
+                }
+            }
+        },
+        "MessageResponse": {
+            "type": "object",
+            "properties": {
+                "Message": {
+                    "type": "string",
+                    "description": "Retorno da operação"
+                }
+            }
+        },
+        "FileObject": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "ID do arquivo"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Nome do arquivo"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Tipo do arquivo"
+                },
+                "subtype": {
+                    "type": "string",
+                    "description": "Extensão do arquivo"
+                },
+                "created_at": {
+                    "type": "string",
+                    "description": "Data de criação"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "description": "Data de atualização"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Link para acessar a imagem"
+                }
+            }
+        },
+        "FileResponse": {
+            "type": "object",
+            "properties": {
+                "file": {
+                    "$ref": "#/definitions/FileObject",
+                    "description": "Objeto com os dados da imagem"
+                }
+            }
+        },
+        "AppointmentResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "ID do agendamento"
+                },
+                "date": {
+                    "type": "string",
+                    "description": "Data do agendamento"
+                },
+                "user_id": {
+                    "type": "number",
+                    "description": "ID do cliente"
+                },
+                "provider_id": {
+                    "type": "number",
+                    "description": "ID do prestador de serviço"
+                },
+                "canceled_at": {
+                    "type": "string",
+                    "description": "Data de cancelamento"
+                },
+                "created_at": {
+                    "type": "string",
+                    "description": "Data de criação"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "description": "Data de criação"
+                },
+                "provider": {
+                    "$ref": "#/definitions/AppointmentProviderResponse",
+                    "description": "Dados do prestador de serviço"
+                },
+                "user": {
+                    "$ref": "#/definitions/AppointmentUserResponse",
+                    "description": "Dados do usuário"
+                }
+            }
+        },
+        "AppointmentProviderResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "nome do prestador de serviço"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "E-mail do prestador de serviço"
+                }
+            }
+        },
+        "AppointmentUserResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "nome do cliente"
+                }
+            }
+        },
+        "NotificationResponse": {
+            "type": "object",
+            "properties": {}
+        },
+        "ScheduleResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "ID do agendamento"
+                },
+                "date": {
+                    "type": "string",
+                    "description": "Data do agendamento"
+                },
+                "user_id": {
+                    "type": "number",
+                    "description": "ID do cliente"
+                },
+                "provider_id": {
+                    "type": "number",
+                    "description": "ID do prestador de serviço"
+                },
+                "canceled_at": {
+                    "type": "string",
+                    "description": "Data de cancelamento"
+                },
+                "created_at": {
+                    "type": "string",
+                    "description": "Data de criação"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "description": "Data de criação"
+                },
+                "user": {
+                    "$ref": "#/definitions/AppointmentUserResponse",
+                    "description": "Dados do usuário"
+                }
+            }
+        },
+        "AvailableDaysResponse": {
+            "type": "object",
+            "properties": {
+                "day": {
+                    "type": "string",
+                    "description": "Data"
+                },
+                "day_week": {
+                    "type": "string",
+                    "description": "Dia da semana"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "description": "Se o dia pode ser agendado"
+                }
+            }
+        },
+        "AvailableHoursResponse": {
+            "type": "object",
+            "properties": {
+                "time": {
+                    "type": "string",
+                    "description": "Horário"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "Horário formatado"
+                },
+                "available": {
+                    "type": "boolean",
+                    "description": "Se o horário está disponível para agendamento"
+                }
+            }
+        },
+        "AvatarResponse": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Nome da imagem"
+                },
+                "path": {
+                    "type": "string",
+                    "description": "Nome do arquivo"
+                },
+                "url": {
+                    "type": "string",
+                    "description": "Caminho da imagem"
+                }
+            }
+        },
+        "ProviderResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "number",
+                    "description": "ID do prestador de serviço"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Nome"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email"
+                },
+                "avatar_id": {
+                    "type": "number",
+                    "description": "ID da imagem"
+                },
+                "avatar": {
+                    "$ref": "#/definitions/AvatarResponse",
+                    "description": "Imagem do prestador de serviço"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {},
+    "tags": [
+        {
+            "name": "Usuário"
+        },
+        {
+            "name": "Files",
+            "description": "Imagens dos prestadores de serviços"
+        },
+        {
+            "name": "Providers",
+            "description": "Prestadores de serviços da barbearia"
+        },
+        {
+            "name": "Appointments",
+            "description": "Agendamentos"
+        },
+        {
+            "name": "Notification",
+            "description": "Lista as comunicações enviadas pelo sistema"
+        },
+        {
+            "name": "Schedule",
+            "description": "Agenda"
+        }
+    ]
+}

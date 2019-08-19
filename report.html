@@ -1,0 +1,199 @@
+<h1>Dredd Tests</h1>
+<h2>Pass: POST (200) /users</h2>
+<h2>Pass: POST (200) /sessions</h2>
+<h2>Pass: PUT (200) /users</h2>
+<h2>Pass: POST (200) /forgot_password</h2>
+<h2>Fail: POST (200) /validate_token</h2>
+<h3>Message</h3>
+<pre><code>statusCode: Status code is '500' instead of '200'
+
+</code></pre>
+<h3>Request</h3>
+<pre><code>method: POST
+uri: /validate_token
+headers: 
+    Content-Type: application/json
+    User-Agent: Dredd/11.1.0 (Windows_NT 10.0.18362; x64)
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTgsImlhdCI6MTU2NTc0NzI3NiwiZXhwIjoxNTY2MzUyMDc2fQ.CC_ZZLWPzX2IiDiKKExyYT9cQ9jel6lQX2HGI3JgTeQ
+
+body: 
+{
+  &quot;token&quot;: &quot;1235678910&quot;
+}
+
+</code></pre>
+<h3>Expected</h3>
+<pre><code>headers: 
+    Content-Type: application/json; charset=utf-8
+
+body: 
+{
+  &quot;user&quot;: {
+    &quot;id&quot;: 67,
+    &quot;name&quot;: &quot;Bins&quot;,
+    &quot;email&quot;: &quot;bins22@ig.com.br&quot;,
+    &quot;provider&quot;: false,
+    &quot;type&quot;: &quot;USUARIO&quot;,
+    &quot;avatar&quot;: null
+  },
+  &quot;token&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjEyLCJpYXQiOjE1NjM3MTczNzN9.otd3_U-PxnME3M7rh0FnKXYBi0dhDOaShaPDN9Qk49w&quot;
+}
+statusCode: 200
+bodySchema: {
+  &quot;$schema&quot;: &quot;http://json-schema.org/draft-04/schema#&quot;,
+  &quot;type&quot;: &quot;object&quot;,
+  &quot;properties&quot;: {
+    &quot;user&quot;: {
+      &quot;type&quot;: &quot;object&quot;,
+      &quot;properties&quot;: {
+        &quot;id&quot;: {
+          &quot;type&quot;: &quot;number&quot;
+        },
+        &quot;name&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;email&quot;: {
+          &quot;type&quot;: &quot;string&quot;
+        },
+        &quot;provider&quot;: {
+          &quot;type&quot;: &quot;boolean&quot;
+        },
+        &quot;avatar&quot;: {
+          &quot;anyOf&quot;: [
+            {
+              &quot;type&quot;: &quot;null&quot;
+            },
+            {
+              &quot;type&quot;: &quot;object&quot;,
+              &quot;properties&quot;: {
+                &quot;name&quot;: {
+                  &quot;type&quot;: &quot;string&quot;
+                },
+                &quot;path&quot;: {
+                  &quot;type&quot;: &quot;string&quot;
+                },
+                &quot;url&quot;: {
+                  &quot;type&quot;: &quot;string&quot;
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    &quot;token&quot;: {
+      &quot;type&quot;: &quot;string&quot;
+    }
+  }
+}
+
+</code></pre>
+<h3>Actual</h3>
+<pre><code>statusCode: 500
+headers: 
+    x-powered-by: Express
+    access-control-allow-origin: *
+    content-type: application/json; charset=utf-8
+    content-length: 1684
+    etag: W/&quot;694-8IG61BkoVurHpC/7QIk2KcAbqWk&quot;
+    date: Wed, 14 Aug 2019 01:47:56 GMT
+    connection: close
+
+bodyEncoding: utf-8
+body: 
+{
+  &quot;error&quot;: {
+    &quot;message&quot;: &quot;jwt malformed&quot;,
+    &quot;name&quot;: &quot;JsonWebTokenError&quot;,
+    &quot;frames&quot;: [
+      {
+        &quot;file&quot;: &quot;node_modules\\jsonwebtoken\\verify.js&quot;,
+        &quot;filePath&quot;: &quot;C:\\rocketseat\\node\\goBarberApi\\node_modules\\jsonwebtoken\\verify.js&quot;,
+        &quot;method&quot;: &quot;module.exports&quot;,
+        &quot;line&quot;: 63,
+        &quot;column&quot;: 17,
+        &quot;context&quot;: {
+          &quot;start&quot;: 58,
+          &quot;pre&quot;: &quot;  }\n\n  var parts = jwtString.split('.');\n\n  if (parts.length !== 3){&quot;,
+          &quot;line&quot;: &quot;    return done(new JsonWebTokenError('jwt malformed'));&quot;,
+          &quot;post&quot;: &quot;  }\n\n  var decodedToken;\n\n  try {&quot;
+        },
+        &quot;isModule&quot;: true,
+        &quot;isNative&quot;: false,
+        &quot;isApp&quot;: false
+      },
+      {
+        &quot;file&quot;: &quot;internal/util.js&quot;,
+        &quot;filePath&quot;: &quot;internal/util.js&quot;,
+        &quot;method&quot;: &quot;Promise&quot;,
+        &quot;line&quot;: 276,
+        &quot;column&quot;: 30,
+        &quot;context&quot;: {},
+        &quot;isModule&quot;: false,
+        &quot;isNative&quot;: true,
+        &quot;isApp&quot;: false
+      },
+      {
+        &quot;file&quot;: &quot;internal/util.js&quot;,
+        &quot;filePath&quot;: &quot;internal/util.js&quot;,
+        &quot;method&quot;: null,
+        &quot;line&quot;: 275,
+        &quot;column&quot;: 12,
+        &quot;context&quot;: {},
+        &quot;isModule&quot;: false,
+        &quot;isNative&quot;: true,
+        &quot;isApp&quot;: false
+      },
+      {
+        &quot;file&quot;: &quot;src\\app\\controllers\\SessionController.js&quot;,
+        &quot;filePath&quot;: &quot;C:\\rocketseat\\node\\goBarberApi\\src\\app\\controllers\\SessionController.js&quot;,
+        &quot;method&quot;: &quot;validateTokenForgotPassword&quot;,
+        &quot;line&quot;: 96,
+        &quot;column&quot;: 84,
+        &quot;context&quot;: {
+          &quot;start&quot;: 91,
+          &quot;pre&quot;: &quot;\t\t});\n\t\tif(!(await schema.isValid(req.body))){\n\t\t  return res.status(400).json({ error: \&quot;Erro de validação na sessão \&quot; })\n\t\t}\n\t\t&quot;,
+          &quot;line&quot;: &quot;\t\tconst decoded = await promisify(jwt.verify)(token, authConfig.secret);&quot;,
+          &quot;post&quot;: &quot;\t\tconst user = await User.findOne({ \n\t\t  where: { id: decoded.id },\n\t\t  include: [\n\t\t\t{\n\t\t\t  model: File,&quot;
+        },
+        &quot;isModule&quot;: false,
+        &quot;isNative&quot;: false,
+        &quot;isApp&quot;: true
+      },
+      {
+        &quot;file&quot;: &quot;internal/process/next_tick.js&quot;,
+        &quot;filePath&quot;: &quot;internal/process/next_tick.js&quot;,
+        &quot;method&quot;: &quot;process._tickCallback&quot;,
+        &quot;line&quot;: 68,
+        &quot;column&quot;: 7,
+        &quot;context&quot;: {},
+        &quot;isModule&quot;: false,
+        &quot;isNative&quot;: true,
+        &quot;isApp&quot;: false
+      }
+    ]
+  }
+}
+
+</code></pre>
+<h2>Skip: GET (200) /files/1</h2>
+<h2>Skip: PUT (200) /files/1</h2>
+<h2>Skip: DELETE (200) /files/1</h2>
+<h2>Skip: POST (200) /files/</h2>
+<h2>Pass: GET (200) /providers</h2>
+<h2>Pass: GET (200) /providers/1/available?date=123456</h2>
+<h2>Pass: GET (200) /providers/1/days</h2>
+<h2>Pass: GET (200) /appointments</h2>
+<h2>Pass: POST (200) /appointments</h2>
+<h2>Pass: DELETE (200) /appointments/1</h2>
+<h2>Skip: GET (200) /notifications</h2>
+<h2>Skip: PUT (200) /notifications/1</h2>
+<h2>Skip: GET (200) /schedule</h2>
+<hr>
+<h1>Summary</h1>
+<p><strong>Tests completed:</strong> 10 passing,
+1 failing,
+0 errors,
+7 skipped,
+18 total.</p>
+<p><strong>Tests took:</strong> 6874ms.</p>
